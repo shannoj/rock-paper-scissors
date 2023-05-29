@@ -1,9 +1,13 @@
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
 function getComputerChoice(){
-    return (Math.random() * 3 + 1);
+    return (getRandomInt(3) + 1);
 }
 
 function getPlayerChoice() {
-    let choice = toLowerCase(prompt("choose rock, paper, or scissors"));
+    let choice = prompt("choose rock, paper, or scissors");
 
     if (choice == 'rock') {
         return 1;
@@ -18,7 +22,7 @@ function getPlayerChoice() {
     }
 
     else {
-        console.log("invalid input");
+        return console.log("invalid input");
     }
 }
 
@@ -48,7 +52,7 @@ function playRound(getPlayerChoice, getComputerChoice){
     }
 
     else {
-        return 'tie'
+        return 'tie';
     }
 }
 
@@ -56,8 +60,12 @@ function game() {
     let computerScore = 0;
     let playerScore = 0;
 
-    while (computerScore < 5 || playerScore < 5) {
-        let result = playRound(getPlayerChoice, getComputerChoice);
+    console.log(computerScore);
+    while (computerScore < 5 && playerScore < 5) {
+        let playerChoice = getPlayerChoice();
+        let computerChoice = getComputerChoice();
+
+        let result = playRound(playerChoice, computerChoice);
 
         if (result == 'cw'){
             computerScore += 1;
@@ -70,6 +78,7 @@ function game() {
         else {
             continue;
         }
+
     }
 
     if (computerScore > playerScore) {
